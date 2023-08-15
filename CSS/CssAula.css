@@ -1,0 +1,33 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 98vh;
+}
+
+h1 {
+    color: red;
+    text-align: center;
+    
+}
+
+body {
+    background-color: lightblue;
+}
+
+#btn {
+    width: 50px;
+}
+
+footer {
+    color: brown;
+}
+
+footer:hover {
+    color: green;
+}
