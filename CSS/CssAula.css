@@ -20,6 +20,10 @@ body {
     background-color: lightblue;
 }
 
+#header {
+    color: green;
+}
+
 #btn {
     width: 50px;
 }
