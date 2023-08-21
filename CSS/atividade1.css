@@ -1,0 +1,77 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&family=Teko:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background-image: linear-gradient(to right, rgb(0, 255, 60) , rgb(255, 0, 217));
+}
+
+header {
+    font-size: 110px;
+    text-align: center;
+    margin: 30px;
+    font-family: 'Teko', sans-serif;
+}
+
+div {
+    width: 15vw;
+    height: 10vh;
+    display: inline-block;
+    margin-bottom: 40%;
+    margin-left: 20px;
+}
+
+h1 {
+    border: 2px solid black;
+    background-image: url(../Img/d1bdcbf9a5a6cbc4e480bcb5e774deb7.jpg);
+    background-position: top center;
+    width: 95vw;
+    color: rgb(107, 104, 104);
+    text-align: center;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.375);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.462);
+}
+
+h2 {
+    width: 95vw;
+    text-align: center;
+    font-size: 35px;
+}
+
+article {
+    width: 40vw;
+    text-align: center;
+    display: inline-block;
+    color:antiquewhite;
+    margin-left: 3%;
+    border: 2px solid black;
+    margin-left: 12rem;
+    box-shadow: 2px 2px 9px rgba(0, 0, 0, 0.832);
+    
+}
+
+p {
+    
+    margin: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #000000;
+}
+
+footer {
+    font-family: 'Teko', sans-serif;
+    font-size: 18px;
+    text-align: center;
+    margin: 25px;
+}
+
