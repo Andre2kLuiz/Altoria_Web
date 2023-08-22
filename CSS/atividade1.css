@@ -49,6 +49,8 @@ h2 {
 }
 
 article {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
     width: 40vw;
     text-align: center;
     display: inline-block;
