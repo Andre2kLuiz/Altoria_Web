@@ -1,0 +1,30 @@
+
+
+
+header{
+    background-color: brown;
+    border: 1px solid black;
+    border: 50%;
+}
+main{
+    background-color: grey;
+}
+
+img {
+    width: 100px;
+    height: 150px;
+}
+
+h1{
+    text-align: center;
+    
+}
+
+h2{
+    text-align: center;
+    border-bottom: 2px double black;
+}
+ 
+footer{
+    text-align: center;
+}
