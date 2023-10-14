@@ -1,13 +1,22 @@
 
-
+let flag = true
 
 
 function inserir (num){
-   document.getElementById('resultado').innerHTML = numero + num
+    let numero = document.getElementById('resultado').innerHTML
+    document.getElementById('resultado').innerHTML = numero + num
+    flag = true
+}
+
+function inserirOp (op){
+    if(flag === true){
+        let numero = document.getElementById('resultado').innerHTML
+        document.getElementById('resultado').innerHTML = numero + op
+        flag = false
+    }
 }
 
 function limpar (){
-    var numero = document.getElementById('resultado').innerHTML
     document.getElementById('resultado').innerHTML = ""
 }
 
