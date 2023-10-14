@@ -1,11 +1,13 @@
 
 
+
+
 function inserir (num){
-   var numero = document.getElementById('resultado').innerHTML
    document.getElementById('resultado').innerHTML = numero + num
 }
 
 function limpar (){
+    var numero = document.getElementById('resultado').innerHTML
     document.getElementById('resultado').innerHTML = ""
 }
 
@@ -15,7 +17,7 @@ function apagar (){
 }
 
 function calcular(){
-    var resultado = document.getElementById('resultado').innerHTML
+    let resultado = document.getElementById('resultado').innerHTML
     if(resultado){
         document.getElementById('resultado').innerHTML = eval(resultado)
     }
