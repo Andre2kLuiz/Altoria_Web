@@ -1,5 +1,5 @@
 
-let flag = true
+let flag = false
 let cont = 0
 
 /*Função para escrever na tela os números, concatenalos e liberar flag para operadores */
@@ -17,7 +17,7 @@ function inserir (num){
 /*Função para escrever operadores na tela e bloquear repetição seguidas de operadores */
 
 function inserirOp (op){
-    if(flag === true){
+    if(flag){
         let numero = document.getElementById('resultado').innerHTML
         document.getElementById('resultado').innerHTML = numero + op
         flag = false
@@ -29,6 +29,7 @@ function inserirOp (op){
 function limpar (){
     document.getElementById('resultado').innerHTML = 0
     cont = 0
+    
 }
 
 /*Apagar numero por numero da tela */
