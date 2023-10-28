@@ -1,37 +1,53 @@
 let tela = document.getElementById("tela")
 let ctx = tela.getContext("2d")
 
-const imagem = new Image()
-imagem.src = "/Img/raio.png"
-
 tela.style.border="3px solid black"
 
-const largura = 250
-const altura = 200
-
-let posX = 0
-let posY = 0
-
-function draw(){
-    ctx.clearRect(0, 0, 800, 800)
-    ctx.drawImage(imagem, 250, 250, largura, altura, posX, posY, largura, altura)
+const teclado ={
+    sima:false,
+    baixo:false,
+    direita:false,
+    esquerda:false
 }
 
+const jogador = new Jogador(ctx, teclado)
 
-let rungame = setInterval(draw, 300)
-
-window.addEventListener('keydown', (event)=>{
-    if(event.key === "a" && posX > 0){
-        posX -= 20
-    }else if(event.key === "d" && posX < 550){
-        posX+= 20
+window.addEventListener('keydown',(evento)=>{
+    if(evento.key === "a"){
+        teclado.esquerda = true
+    }else if(evento.key === "d"){
+        teclado.direita = true
     }
-    if(event.key === "w" && posY > 0){
-        posY -= 20
-    }else if(event.key === "s" && posY < 600){
-        posY += 20
+    if(evento.key === "w"){
+        teclado.sima = true
+    }else if(evento.key === "s"){
+        teclado.baixo = true
     }
 })
+
+window.addEventListener('keyup',(evento)=>{
+    if(evento.key === "a"){
+        teclado.esquerda = false
+    }else if(evento.key === "d"){
+        teclado.direita = false
+    }
+    if(evento.key === "w"){
+        teclado.sima = false
+    }else if(evento.key === "s"){
+        teclado.baixo = false
+    }
+})
+
+
+const game = ()=>{
+    ctx.clearRect(0, 0, 800, 800)
+    jogador.desenhar()
+    requestAnimationFrame(game)
+}
+requestAnimationFrame(game)
+
+
+
     
     
 
