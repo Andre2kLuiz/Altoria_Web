@@ -1,0 +1,30 @@
+@media screen {
+    body {
+        background-color: red;
+    }
+}
+
+@media (orientation: landscape) {
+    body {
+        background-color: green;
+    }
+}
+
+@media (orientation: portrait) {
+    body {
+        background-color: blue;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    body {
+        background-color: yellow;
+    }
+}
+
+@media only screen and (max-height: 450px){
+    body {
+        background-color: whitesmoke;
+    }
+}
+
