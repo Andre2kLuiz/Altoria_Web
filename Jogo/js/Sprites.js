@@ -8,6 +8,9 @@ class Sprite {
         this.velocidade = velocidade;
         this.width = dimencao?.width;
         this.height = dimencao?.height;
+        this.direita = true
+
+        
 
         if(source) {
             this.image = new Image()
@@ -19,6 +22,9 @@ class Sprite {
     }
 
     draw(){
+        const img = new Image()
+        img.src = "Assets/Cavaleiro.png"
+
         if(this.image) {
             ctx.drawImage(
                 this.image,
@@ -28,22 +34,31 @@ class Sprite {
                 this.height
             )
         }else {
-            ctx.fillStyle = "white"
+            ctx.fillStyle = "black"
             ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
+            
         }
 
-        if(this.isAttack && !keys.a.apertado) {
+        if(this.isAttack && !keys.a.apertado && this.direita) {
+            
             ctx.fillStyle = "red"
             ctx.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
         }
+
+        if(this.isAttack && !keys.d.apertado && !this.direita) {
+            ctx.fillStyle = "green"
+            ctx.fillRect(this.attackBox.position.x - 75, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
+    }
         
 
-        if(this.isAttack && keys.d.apertado === true) {
+        if(this.isAttack && keys.d.apertado) {
+            this.direita = true
             ctx.fillStyle = "red"
             ctx.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
         }
 
-        if(this.isAttack && keys.a.apertado === true){
+        if(this.isAttack && keys.a.apertado){
+            this.direita = false
             ctx.fillStyle = "green"
             ctx.fillRect(this.attackBox.position.x - 75, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
         }
@@ -136,7 +151,7 @@ class Lutador extends Sprite {
 
 const player = new Lutador({
     position: {
-        x:100,
+        x:0,
         y:0
     },
     dimencao:{
@@ -145,7 +160,7 @@ const player = new Lutador({
     },
     velocidade:{
         x:0,
-        y:10
+        y:200
     }
 
 })
