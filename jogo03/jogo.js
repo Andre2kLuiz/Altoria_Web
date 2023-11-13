@@ -123,13 +123,22 @@ const cavaleiro = {
     ],
 
     atacando: [
-        {spritex: 139, spritey: 334, },
-        {spritex: 221, spritey: 334, },
-        {spritex: 298, spritey: 350, },
+        {spritex: 140, spritey: 334, },
+        {spritex: 140, spritey: 334, },
+        {spritex: 301, spritey: 337, },
+        {spritex: 301, spritey: 337, },
+        {spritex: 301, spritey: 337, },
+    ],
+
+    atacandoPulando: [
+        {spritex: 0, spritey: 99, },
+        {spritex: 78, spritey: 101, },
+        {spritex: 78, spritey: 101, },
+        {spritex: 78, spritey: 101, },
     ],
 
     atualizaFrameAtual(){
-        const intervaloDeFrames = 13
+        const intervaloDeFrames = 18
         const passouIntervalo = frames % intervaloDeFrames === 0
 
         if(passouIntervalo){
@@ -183,9 +192,21 @@ const cavaleiro = {
             ctx.drawImage(
                 sprites,
                 spritex, spritey, 
-                cavaleiro.largura +20 , cavaleiro.altura -32, 
+                cavaleiro.largura +25, cavaleiro.altura -10, 
                 cavaleiro.x , cavaleiro.y, 
-                150, 260
+                180, 300
+            )
+        }
+
+        if(cavaleiro.isAttack && !cavaleiro.noChao){
+            cavaleiro.atualizaFrameAtual()
+            const {spritex, spritey} = cavaleiro.atacandoPulando[cavaleiro.frameAtual]
+            ctx.drawImage(
+                sprites,
+                spritex +10, spritey, 
+                cavaleiro.largura +15, cavaleiro.altura -40, 
+                cavaleiro.x , cavaleiro.y, 
+                170, 180
             )
         }
         
