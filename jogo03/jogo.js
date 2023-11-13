@@ -243,8 +243,7 @@ const telas = {
     INICIO: {
         desenha(){
             sondIntro.play()
-            telaInicial.desenha()
-             
+            telaInicial.desenha() 
         },
         click(){
             mudaParaTela(telas.JOGO)
