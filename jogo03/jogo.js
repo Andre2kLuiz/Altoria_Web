@@ -77,6 +77,9 @@ const cavaleiro = {
     noChao: true,
     ultimoBotaoApertado: true,
     parado: true,
+    isAttack: false,
+    attackCooldown: 800,
+    onAttackCoodown: false,
     atualiza(){  
         if(Math.ceil(cavaleiro.y + cavaleiro.altura >= 450)){
             cavaleiro.noChao = true
@@ -113,6 +116,18 @@ const cavaleiro = {
         {spritex: 159, spritey: 261, },
     ],
 
+    pulou: [
+        {spritex: 0, spritey: 101, },
+        {spritex: 0, spritey: 101, },
+        {spritex: 0, spritey: 101, },
+    ],
+
+    atacando: [
+        {spritex: 139, spritey: 334, },
+        {spritex: 221, spritey: 334, },
+        {spritex: 298, spritey: 350, },
+    ],
+
     atualizaFrameAtual(){
         const intervaloDeFrames = 13
         const passouIntervalo = frames % intervaloDeFrames === 0
@@ -128,18 +143,18 @@ const cavaleiro = {
 
     desenha(){
         
-        if(cavaleiro.parado){
+        if(cavaleiro.parado && this.noChao && !cavaleiro.isAttack){
             cavaleiro.atualizaFrameAtual()
             const {spritex, spritey} = cavaleiro.movimento[cavaleiro.frameAtual]
             ctx.drawImage(
                 sprites,
                 spritex, spritey, 
                 cavaleiro.largura, cavaleiro.altura, 
-                cavaleiro.x , cavaleiro.y, 
-                150, 250
+                cavaleiro.x , cavaleiro.y -80, 
+                150, 320
             )
         }
-        if(!cavaleiro.parado){
+        if(!cavaleiro.parado && this.noChao && !cavaleiro.isAttack){
             cavaleiro.atualizaFrameAtual()
             const {spritex, spritey} = cavaleiro.correr[cavaleiro.frameAtual]
             ctx.drawImage(
@@ -147,11 +162,50 @@ const cavaleiro = {
                 spritex, spritey , 
                 cavaleiro.largura , cavaleiro.altura -32, 
                 cavaleiro.x , cavaleiro.y, 
-                130, 220
+                130, 260
+            )
+        }
+        if(!cavaleiro.noChao && !cavaleiro.isAttack){
+            cavaleiro.atualizaFrameAtual()
+            const {spritex, spritey} = cavaleiro.pulou[cavaleiro.frameAtual]
+            ctx.drawImage(
+                sprites,
+                spritex, spritey, 
+                cavaleiro.largura +20 , cavaleiro.altura -32, 
+                cavaleiro.x , cavaleiro.y, 
+                150, 260
+            )
+        }
+
+        if(cavaleiro.isAttack && cavaleiro.noChao){
+            cavaleiro.atualizaFrameAtual()
+            const {spritex, spritey} = cavaleiro.atacando[cavaleiro.frameAtual]
+            ctx.drawImage(
+                sprites,
+                spritex, spritey, 
+                cavaleiro.largura +20 , cavaleiro.altura -32, 
+                cavaleiro.x , cavaleiro.y, 
+                150, 260
             )
         }
         
     },
+
+    attack(){
+        if(cavaleiro.onAttackCoodown) return
+        cavaleiro.isAttack = true
+        cavaleiro.onAttackCoodown = true
+
+        setTimeout(()=> {
+            cavaleiro.isAttack = false
+        }, 1000)
+
+        setTimeout(() => {
+            this.onAttackCoodown = false
+        }, this.attackCooldown)
+    },
+
+
     pular(){
         if(!cavaleiro.noChao)return
         cavaleiro.velocidad = -20
@@ -239,7 +293,9 @@ window.addEventListener("keydown", e =>{
         break;
         case "w":
             keys.w.apertado = true
-            
+        break;
+        case " ":
+            keys.space.apertado = true
         break;
     }
 })
@@ -261,11 +317,17 @@ window.addEventListener("keyup", e =>{
             keys.w.apertado = false
             keys.w.segurando = false
         break;
+        case " ":
+            keys.space.apertado = false
+            keys.space.segurando = false
+        break;
+
     }
 })
 
 function controleBotao(){
     movimento()
+    attack()
     function movimento(){
        //cavaleiro.x = 0
 
@@ -280,6 +342,13 @@ function controleBotao(){
         if(keys.w.apertado && !keys.w.segurando) {
             cavaleiro.pular()
             keys.w.segurando = true
+        }
+    }
+
+    function attack(){
+        if (keys.space.apertado && !keys.space.segurando){
+            cavaleiro.attack()
+            keys.space.segurando = true
         }
     }
 }
