@@ -1,4 +1,3 @@
-/*
 const keys = {
     a: {
         apertado: false
@@ -17,76 +16,81 @@ const keys = {
         apertado: false,
         segurando: false
     }
-
-
 }
 
-
-window.addEventListener("keydown", e => {
+window.addEventListener("keydown", e =>{
     let key = e.key
 
-    switch(key) {
-        case "ArrowLeft":
+    switch(key){
         case "a":
             keys.a.apertado = true
             cavaleiro.ultimoBotaoApertado = key
-        break
-        case "ArrowRight":
+            cavaleiro.parado = false
+        break;
         case "d":
             keys.d.apertado = true
             cavaleiro.ultimoBotaoApertado = key
-        break
-        case "ArrowUp":
+            cavaleiro.parado = false
+        break;
         case "w":
             keys.w.apertado = true
-        break
+        break;
         case " ":
             keys.space.apertado = true
-        break
+        break;
     }
 })
 
-window.addEventListener("keyup", e => {
+window.addEventListener("keyup", e =>{
     let key = e.key
 
-    switch(key) {
-        case "ArrowLeft":
+    switch(key){
         case "a":
             keys.a.apertado = false
-        break
-        case "ArrowRight":
+            cavaleiro.parado = true
+            
+        break;
         case "d":
             keys.d.apertado = false
-        break
-        case "ArrowUp":
+            cavaleiro.parado = true
+        break;
         case "w":
             keys.w.apertado = false
             keys.w.segurando = false
-        break
+        break;
         case " ":
             keys.space.apertado = false
             keys.space.segurando = false
-        break
+        break;
+
     }
 })
 
 function controleBotao(){
     movimento()
-        function movimento(){
-            cavaleiro.x = 0
+    attack()
+    function movimento(){
+       //cavaleiro.x = 0
 
-            if(keys.a.apertado && ["a", "ArrowLeft"].includes(cavaleiro.ultimoBotaoApertado) && cavaleiro.x > 0) {
-                cavaleiro.x -= 1.5 * 3.4
-            }
-
-            if(keys.d.apertado && ["d", "ArrowRight"].includes(cavaleiro.ultimoBotaoApertado) && cavaleiro.x < 2000) {
-                cavaleiro.x += 1.5 * 3.4
-            }
-
-            if(keys.w.apertado && !keys.w.segurando) {
-                cavaleiro.pulo()
-                keys.w.segurando = true
-            }
+        if(keys.a.apertado && ["a"].includes(cavaleiro.ultimoBotaoApertado) && cavaleiro.x > 0) {
+            cavaleiro.x -= 1.5 * 3.4
+            cavaleiro.spritex = cavaleiro.height * 5
         }
 
-}*/
+        if(keys.d.apertado && ["d"].includes(cavaleiro.ultimoBotaoApertado) && cavaleiro.x < 920) {
+            cavaleiro.x += 1.5 * 3.4
+        }
+
+        if(keys.w.apertado && !keys.w.segurando) {
+            cavaleiro.pular()
+            keys.w.segurando = true
+        }
+    }
+
+    function attack(){
+        if (keys.space.apertado && !keys.space.segurando){
+            cavaleiro.attack()
+            keys.space.segurando = true
+        }
+    }
+}

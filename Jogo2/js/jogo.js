@@ -17,11 +17,11 @@ loop()
 function loop (){
     window.requestAnimationFrame(loop)
     controleBotao()
-
+    player.desenha()
     ctx.fillStyle = "black"
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
-    cavaleiro.gravidade()
+    
     
   
 }

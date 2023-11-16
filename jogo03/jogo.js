@@ -123,11 +123,10 @@ const cavaleiro = {
     ],
 
     atacando: [
-        {spritex: 140, spritey: 334, },
-        {spritex: 140, spritey: 334, },
-        {spritex: 301, spritey: 337, },
-        {spritex: 301, spritey: 337, },
-        {spritex: 301, spritey: 337, },
+        {spritex: 223, spritey: 330, },
+        {spritex: 223, spritey: 330, },
+        {spritex: 223, spritey: 330, },
+        {spritex: 303, spritey: 330,},
     ],
 
     atacandoPulando: [
@@ -138,7 +137,7 @@ const cavaleiro = {
     ],
 
     atualizaFrameAtual(){
-        const intervaloDeFrames = 18
+        const intervaloDeFrames = 16
         const passouIntervalo = frames % intervaloDeFrames === 0
 
         if(passouIntervalo){
@@ -194,7 +193,7 @@ const cavaleiro = {
                 spritex, spritey, 
                 cavaleiro.largura +25, cavaleiro.altura -10, 
                 cavaleiro.x , cavaleiro.y, 
-                180, 300
+                180, 270
             )
         }
 
@@ -275,112 +274,13 @@ window.addEventListener("click", () =>{
     }
 })
 
-
-
-const keys = {
-    a: {
-        apertado: false
-    },
-
-    d: {
-        apertado: false
-    },
-
-    w:{
-        apertado: false,
-        segurando: false
-    },
-
-    space:{
-        apertado: false,
-        segurando: false
-    }
-}
-
-window.addEventListener("keydown", e =>{
-    let key = e.key
-
-    switch(key){
-        case "a":
-            keys.a.apertado = true
-            cavaleiro.ultimoBotaoApertado = key
-            cavaleiro.parado = false
-        break;
-        case "d":
-            keys.d.apertado = true
-            cavaleiro.ultimoBotaoApertado = key
-            cavaleiro.parado = false
-        break;
-        case "w":
-            keys.w.apertado = true
-        break;
-        case " ":
-            keys.space.apertado = true
-        break;
-    }
-})
-
-window.addEventListener("keyup", e =>{
-    let key = e.key
-
-    switch(key){
-        case "a":
-            keys.a.apertado = false
-            cavaleiro.parado = true
-            
-        break;
-        case "d":
-            keys.d.apertado = false
-            cavaleiro.parado = true
-        break;
-        case "w":
-            keys.w.apertado = false
-            keys.w.segurando = false
-        break;
-        case " ":
-            keys.space.apertado = false
-            keys.space.segurando = false
-        break;
-
-    }
-})
-
-function controleBotao(){
-    movimento()
-    attack()
-    function movimento(){
-       //cavaleiro.x = 0
-
-        if(keys.a.apertado && ["a"].includes(cavaleiro.ultimoBotaoApertado) && cavaleiro.x > 0) {
-            cavaleiro.x -= 1.5 * 3.4
-        }
-
-        if(keys.d.apertado && ["d"].includes(cavaleiro.ultimoBotaoApertado) && cavaleiro.x < 920) {
-            cavaleiro.x += 1.5 * 3.4
-        }
-
-        if(keys.w.apertado && !keys.w.segurando) {
-            cavaleiro.pular()
-            keys.w.segurando = true
-        }
-    }
-
-    function attack(){
-        if (keys.space.apertado && !keys.space.segurando){
-            cavaleiro.attack()
-            keys.space.segurando = true
-        }
-    }
-}
-
-
 function loop(){
     telaAtiva.atualiza()
     telaAtiva.desenha()
     controleBotao()
     
     frames++
-    window.requestAnimationFrame(loop)
+    window.requestAnimationFrame(loop, ctx)
 }
 
 mudaParaTela(telas.INICIO)

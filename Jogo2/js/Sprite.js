@@ -1,90 +1,59 @@
 const gravidade = 0.6
 
+const sprites = new Image()
+sprites.src = ["Asserts/bomberman.png", "Asserts/Arena.png"]
+
 class Sprite {
-    constructor({posicao, velocidade, dimencao}){
-        this.posicao = posicao
-        this.velocidade = velocidade
-        this.largura = dimencao.largura
-        this.tamanho = dimencao.tamanho
+    constructor({corteImg, tamanhoDoCorte, cordenadaImgCanvas }){
+        
+        this.corteImg = corteImg
+        this.tamanhoDoCorte = tamanhoDoCorte
+        this.cordenadaImgCanvas = cordenadaImgCanvas  
     }
+
     desenha(){
         const img = new Image()
-        img.src = "Asserts/Cavaleiro.png"
-        
-            ctx.drawImage( //desenho do cavaleiro
-                img, //imagem
-                this.posicao.x, //recorte x
-                this.posicao.y, //recorte Y
-                this.largura,  //onde desenhar a imagem x
-                this.tamanho, //onde desenhar a imagem y
-                this.velocidade.x, //cordenada da img no canvas x
-                this.velocidade.y, //cordenada da img no canvas y
-                this.largura + 55, //largura
-                this.tamanho + 70  //altutura
-            )
+        img.src = "Asserts/bomberman.png"
+
+        ctx.drawImage(
+            img,
+            this.corteImg.sx, this.corteImg.sy,
+            this.tamanhoDoCorte.swidth, this.tamanhoDoCorte.sheight,
+            this.cordenadaImgCanvas.x, this.cordenadaImgCanvas.y,
+            this.tamanhoDoCorte.swidth, this.tamanhoDoCorte.sheight
+
+        )
     }
 
-    gravidade(){
-        this.desenha()
+} 
+
+class Player extends Sprite {
+    constructor ({
+        corteImg,
+        tamanhoDoCorte,
+        cordenadaImgCanvas,
+    }){
+    super({
+        corteImg,
+        tamanhoDoCorte,
+        cordenadaImgCanvas
+    })
     }
+
 }
 
-
-class Cavaleiro extends Sprite {
-    constructor({posicao, velocidade, dimencao}){
-    super({posicao, velocidade, dimencao})
-        posicao = posicao
-        velocidade = velocidade
-        dimencao = dimencao
-        
-
-        this.noChao
-        this.ultimoBotaoApertado;
-    }
-
-    pulo(){
-        if(!this.noChao)return
-        this.velocidade.y -= 16
-    }
-
-    gravidade(){
-        if(Math.ceil(this.posicao.y + this.tamanho >= canvas.height)){
-            this.noChao = true
-        }else{
-            this.noChao = false
-        }
-
-        if(this.posicao.y + this.tamanho > canvas.height){
-           this.posicao.y = canvas.height - this.tamanho
-           this.velocidade.y = 0
-        }else{
-            if(!this.noChao) this.velocidade.y += gravidade
-        }
-        
-        this.posicao.x += this.velocidade.x
-        this.posicao.y += this.velocidade.y
-
-        this.desenha()
-    }
-}
-
-const cavaleiro = new Cavaleiro({
-    posicao: {
-        sx: 0,
-        sy: 0
+const player = new Sprite({
+    corteImg: {
+        sx: 100,
+        sy: 100,
+    },
+    tamanhoDoCorte: {
+        swidth: 100,
+        sheight: 100,
+    },
+    cordenadaImgCanvas: {
+        x: 10,
+        y: 10,
     },
 
-    velocidade: {
-        x: 0,
-        y: 620
-    },
-
-    dimencao: {
-        largura: 50,
-        tamanho: 100
-    },
-
-})  
-
-
-
+})
