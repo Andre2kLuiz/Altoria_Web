@@ -36,8 +36,8 @@ window.onload = function(){
 
     let labirinto = [
         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-        [1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1],
-        [1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1],
+        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+        [1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
         [1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1],
         [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1],
         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1],
@@ -149,28 +149,28 @@ window.addEventListener("keydown", e =>{
     let key = e.key
     switch(key){
         case "a":
-            mvRight = true
-            mvLeft = false
-            mvUp = false
-            mvDown = false
+            cavaleiro.mvRight = true
+            cavaleiro.mvLeft = false
+            cavaleiro.mvUp = false
+            cavaleiro.mvDown = false
         break;
         case "d":
-            mvRight = false
-            mvLeft = true
-            mvUp = false
-            mvDown = false
+            cavaleiro.mvRight = false
+            cavaleiro.mvLeft = true
+            cavaleiro.mvUp = false
+            cavaleiro.mvDown = false
         break;
         case "w":
-            mvRight = false
-            mvLeft = false
-            mvUp = true
-            mvDown = false
+            cavaleiro.mvRight = false
+            cavaleiro.mvLeft = false
+            cavaleiro.mvUp = true
+            cavaleiro.mvDown = false
         break;
         case "s":
-            mvRight = false
-            mvLeft = false
-            mvUp = false
-            mvDown = true
+            cavaleiro.mvRight = false
+            cavaleiro.mvLeft = false
+            cavaleiro.mvUp = false
+            cavaleiro.mvDown = true
         break;
     }
 })
@@ -179,16 +179,16 @@ window.addEventListener("keyup", e => {
     let key = e.key
     switch(key){
         case "a":
-            mvRight = false
+            cavaleiro.mvRight = false
         break;
         case "d":
-            mvLeft = false
+            cavaleiro.mvLeft = false
         break;
         case "w":
-            mvUp = false
+            cavaleiro.mvUp = false
         break;
         case "s":
-            mvDown = false
+            cavaleiro.mvDown = false
         break;
     }
 })
@@ -204,39 +204,39 @@ window.addEventListener("keyup", e => {
     }
 
     function update(){
-        //cavaleiro.move()
-        if(mvLeft && !mvRight){
-			player.x += player.speed;
-            player.srcY = tilesSrcSize + player.height * 2
+        cavaleiro.move()
+        /*if(mvLeft && !mvRight){
+			cavaleiro.x += cavaleiro.speed;
+            cavaleiro.srcY = tilesSrcSize + cavaleiro.height * 2
 		} else 
 		if(mvRight && !mvLeft){
-			player.x -= player.speed;
-            player.srcX = tilesSrcSize + player.height * 0
+			cavaleiro.x -= cavaleiro.speed;
+            cavaleiro.srcX = tilesSrcSize + cavaleiro.height * 0
 		}
 		if(mvUp && !mvDown){
-			player.y -= player.speed;
-            player.srcY = tilesSrcSize + player.height * 3
+			cavaleiro.y -= cavaleiro.speed;
+            cavaleiro.srcY = tilesSrcSize + cavaleiro.height * 3
 		} else 
 		if(mvDown && !mvUp){
-			player.y += player.speed;
-            player.srcX = tilesSrcSize + player.height * 4
-		}
+			cavaleiro.y += cavaleiro.speed;
+            cavaleiro.srcX = tilesSrcSize + cavaleiro.height * 4
+		}*/
 		
 		for(var i in walls){
 			var wall = walls[i];
-			blockRectangle(player, wall);
+			blockRectangle(cavaleiro, wall);
 		}
-        if(player.x < cam.innerLeftBoundary()){
-            cam.x = player.x - (cam.width * 0.25);
+        if(cavaleiro.srcX < cam.innerLeftBoundary()){
+            cam.x = cavaleiro.srcX - (cam.width * 0.25);
         }
-        if(player.y < cam.innerTopBoundary()){
-            cam.y = player.y - (cam.width * 0.25);
+        if(cavaleiro.srcY < cam.innerTopBoundary()){
+            cam.y = cavaleiro.posY - (cam.height * 0.25);
         }
-        if(player.x + player.width > cam.innerRigthBondary()){
-            cam.x = player.x + cavaleiro.width - (cam.width * 0.75);
+        if(cavaleiro.posX + cavaleiro.posX > cam.innerRigthBondary()){
+            cam.x = cavaleiro.srcX + cavaleiro.posX - (cam.width * 0.75);
         }
-        if(player.y + player.height > cam.innerBottomBondary()){
-            cam.y = player.y + player.height - (cam.height * 0.75);
+        if(cavaleiro.posY + cavaleiro.posY > cam.innerBottomBondary()){
+            cam.y = cavaleiro.srcY + cavaleiro.posY - (cam.height * 0.75);
         }
 
         cam.x = Math.max(0, Math.min(T_WIDTH - cam.width, cam.x));
@@ -259,13 +259,12 @@ window.addEventListener("keyup", e => {
                 
             }
         }
-        /*ctx.drawImage(scene,0, 0, scene.width, scene.height, 0, 0, canvas.width, canvas.height)*/
-        //cavaleiro.draw(ctx)
+        ctx.drawImage(scene,0, 0, scene.width, scene.height, 0, 0, canvas.width, canvas.height)
+        cavaleiro.draw(ctx)
        
-		ctx.fillStyle = "#00f";
-		ctx.fillRect(player.x,player.y,player.width,player.height);
+		/*ctx.fillStyle = "#00f";
+		ctx.fillRect(cavaleiro.x,cavaleiro.y,cavaleiro.width,cavaleiro.height);*/
 		ctx.restore();
-        ctx.restore();
     }
 
     function loop(){

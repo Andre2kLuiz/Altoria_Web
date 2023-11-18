@@ -23,7 +23,7 @@ class Sprite {
             this.srcX, this.srcY,
             this.width, this.height,
             this.posX, this.posY,
-            this.width, this.height,
+            this.width -50, this.height -50,
         )
         this.animation()
     }
