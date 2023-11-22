@@ -1,0 +1,95 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    width: 100vw;
+    height: 100vh;
+    padding: 50px;
+    display: flex;
+}
+
+
+.logo{
+    margin-left: 10px;
+}
+
+#div1{
+    width: 100%;
+    padding: 10px;
+}
+
+body{
+    background-image: linear-gradient(green, rgba(56, 129, 56, 0.542));
+    background-repeat: no-repeat;
+    
+}
+
+main{
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.input{
+    margin-top: 20px;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    border: none;
+    border-radius: 10px;
+}
+
+.remenber{
+    color: #fff;
+    flex-direction: row;
+   margin-bottom: 10px;
+}
+
+#checkbox {
+    margin-right: 10px;
+}
+
+#label{
+    font-size: 12px;
+}
+
+#label2{
+    font-size: 12px;
+    padding-left: 3px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: orangered;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.logo{
+    width: 200px;
+    height: 200px;
+    background-color: aliceblue;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+    main {
+        max-width: 100%;
+    }
+}
+
