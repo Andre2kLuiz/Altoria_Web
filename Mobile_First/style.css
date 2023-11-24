@@ -11,8 +11,16 @@ html{
     display: flex;
 }
 
+body{
+    width: 100vw;
+    height: 80vh;
+    background-image: linear-gradient(green, rgba(56, 129, 56, 0.542));
+    background-repeat: no-repeat ; 
+    background-size: cover;
+}
+
 #principal{
-    height: 100%;
+    height: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,63 +32,70 @@ html{
 
 
 .logo{
-    margin-left: 10px;
+    margin-left: 5px;
+    color: green;
+    display: flex;
+    flex-direction: column;
+}
+
+.flor{
+    height: 100px;
+    width: 100px;
 }
 
 #div1{
-    width: 100%;
-    padding: 10px;
-}
-
-body{
-    background-image: linear-gradient(green, rgba(56, 129, 56, 0.542));
-    background-repeat: no-repeat;
-    
+    padding: 5px;
 }
 
 main{
-    margin: 20px auto;
-    padding: 20px;
+    margin: 10px auto;
+    padding: 10px;
 }
 
 .input{
-    margin-top: 20px;
-    width: 100%;
-    margin-bottom: 15px;
+    width: 50vw;
+    margin-top: 15px;
     padding: 10px;
-    box-sizing: border-box;
     display: flex;
     border: none;
     border-radius: 10px;
+    background-color: rgba(157, 156, 156, 0.642);
+    box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.412);
 }
 
 .remenber{
     color: #fff;
     flex-direction: row;
-    margin-bottom: 10px;
+    justify-content: space-evenly;
+    padding-bottom: 10px;
 }
 
 #checkbox {
-    margin-right: 10px;
+    height: 15px;
+    width: 15px;
+    margin: 5px;
 }
 
 #label{
     font-size: 12px;
 }
 
-#label2{
+#label2 a{
     font-size: 12px;
-    padding-left: 3px;
+    text-decoration: none;
+    margin-left: 120px;
 }
 
 button {
+    font-size: 18px;
     width: 100%;
-    padding: 10px;
+    padding: 8px;
     background-color: orangered;
     color: #fff;
     border: none;
     border-radius: 10px;
     cursor: pointer;
+    box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.437);
 }
 
 .logo{
@@ -93,9 +108,17 @@ button {
     display: flex;
 }
 
+
+
+.redes{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 10px;
+}
+
 .face{
     color: #fff;
-    margin: 10px;
     width: 50px;
     height: 50px;
     background-color: blue;
@@ -104,17 +127,11 @@ button {
     justify-content: center;
     align-items: center;
     font-size: 28px;
-}
-
-.redes{
-    display: flex;
-    flex-direction: row;
-    padding-left: 35px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.623);
 }
 
 .GM{
     color: #fff;
-    margin: 10px;
     width: 50px;
     height: 50px;
     background-color: orangered;
@@ -123,16 +140,41 @@ button {
     justify-content: center;
     align-items: center;
     font-size: 28px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.473);
 }
 
-
-footer {
+footer a{
     text-align: center;
+    text-decoration: none;
 }
 
-@media (max-width: 600px) {
+@media(max-width: 600px) {
     main {
         max-width: 100%;
     }
 }
+
+a:visited {
+    color: #fff;
+}
+
+@media only screen and (max-width: 600px) {
+    .input {
+        width: 200px;
+    }
+    #label2 a{
+        font-size: 12px;
+        text-decoration: none;
+        margin-left: 40px;
+    }
+}
+
+@media only screen and (min-width: 601px) {
+    .input {
+        width: 300px;
+        border: 2px solid black;
+    }
+}
+
+
 
