@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA de Perguntas e Respostas</title>
+    <script src="JS/IA.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        #container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #questionInput {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        #answerOutput {
+            font-weight: bold;
+        }
+
+        #submitBtn {
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #submitBtn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2>IA de Perguntas e Respostas</h2>
+        <input type="text" id="questionInput" placeholder="Faça uma pergunta...">
+        <button onclick="askQuestion()" id="submitBtn">Enviar Pergunta</button>
+        <div id="answerOutput"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script>
+        // Carregar modelo treinado
+        let modeloCarregado;
+        tf.loadLayersModel('https://example.com/seu-modelo/model.json').then((modelo) => {
+            modeloCarregado = modelo;
+        });
+
+        function askQuestion() {
+            const questionInput = document.getElementById("questionInput").value;
+
+            // Aqui você precisa pre-processar a pergunta para torná-la compatível com o modelo
+            // Por exemplo, converter texto em números, normalizar, etc.
+
+            // Fazer previsão
+            const dadosPrevisao = tf.tensor2d([[questionInput]], [1, 1]);
+            const previsao = modeloCarregado.predict(dadosPrevisao);
+
+            // Mostrar resultado da previsão
+            const resposta = previsao.dataSync()[0];
+            document.getElementById("answerOutput").innerText = `Resposta: ${resposta}`;
+        }
+    </script>
+</body>
+</html>
