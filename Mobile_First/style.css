@@ -27,13 +27,16 @@ body{
     flex-direction: column;
     margin-left: 30px;
     padding-top: 120px;
-
 }
 
-
 .logo{
-    margin-left: 5px;
+    width: 200px;
+    height: 200px;
+    background-color: aliceblue;
     color: green;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
     display: flex;
     flex-direction: column;
 }
@@ -53,11 +56,11 @@ main{
 }
 
 .input{
-    width: 50vw;
+    width: 360px;
+    height: 38px;
     margin-top: 15px;
     padding: 10px;
     display: flex;
-    border: none;
     border-radius: 10px;
     background-color: rgba(157, 156, 156, 0.642);
     box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.412);
@@ -66,8 +69,15 @@ main{
 .remenber{
     color: #fff;
     flex-direction: row;
-    justify-content: space-evenly;
     padding-bottom: 10px;
+    padding-left: 5px;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.remenber a {
+    text-decoration: none;
+    padding-left: 170px;
 }
 
 #checkbox {
@@ -76,19 +86,16 @@ main{
     margin: 5px;
 }
 
-#label{
-    font-size: 12px;
-}
-
-#label2 a{
+#checkbox a{
     font-size: 12px;
     text-decoration: none;
-    margin-left: 120px;
+    margin-left: 170px;
 }
 
-button {
+#button {
     font-size: 18px;
-    width: 100%;
+    width: 360px;
+    height: 38px;
     padding: 8px;
     background-color: orangered;
     color: #fff;
@@ -98,23 +105,17 @@ button {
     box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.437);
 }
 
-.logo{
-    width: 200px;
-    height: 200px;
-    background-color: aliceblue;
-    border-radius: 50%;
-    align-items: center;
-    justify-content: center;
-    display: flex;
+#button:hover {
+    width: 358px;
+    height: 37px;
 }
-
-
 
 .redes{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin: 10px;
+    margin: 15px;
+    border: none;
 }
 
 .face{
@@ -123,11 +124,17 @@ button {
     height: 50px;
     background-color: blue;
     border-radius: 50%;
-    display: flex;
+    border: none;
     justify-content: center;
     align-items: center;
-    font-size: 28px;
+    font-size: 35px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.623);
+    cursor: pointer;
+}
+
+.face:hover {
+    width: 48px;
+    height: 48px;
 }
 
 .GM{
@@ -136,11 +143,18 @@ button {
     height: 50px;
     background-color: orangered;
     border-radius: 50%;
-    display: flex;
+    border: none;
+    display: block;
     justify-content: center;
     align-items: center;
     font-size: 28px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.473);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.623);
+    cursor: pointer;
+}
+
+.GM:hover {
+    width: 48px;
+    height: 48px;
 }
 
 footer a{
@@ -167,13 +181,27 @@ a:visited {
         text-decoration: none;
         margin-left: 40px;
     }
+
+    #button{
+        width: 210px;
+    }
+
+    #button:hover {
+        width: 208px;
+    }
+
+    .remenber a {
+        text-decoration: none;
+        padding-left: 30px;
+    }
 }
 
 @media only screen and (min-width: 601px) {
     .input {
-        width: 300px;
+        width: 350px;
         border: 2px solid black;
     }
+
 }
 
 
